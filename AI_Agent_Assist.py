@@ -8,7 +8,7 @@ from utils.helper_functions import *
 
 st.set_page_config(layout="centered", initial_sidebar_state="expanded")
 
-st.markdown('<div style="display: flex; justify-content: center;"><h2>FCR Agent Assist</h2></div>',unsafe_allow_html=True)
+st.markdown('<div style="display: flex; justify-content: center;"><h2>AI Agent Assist</h2></div>',unsafe_allow_html=True)
 
 TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"]
 

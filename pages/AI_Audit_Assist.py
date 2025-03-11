@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 
-st.markdown('<div style="display: flex; justify-content: center;"><h2>Audit Assist</h2></div>',unsafe_allow_html=True)
+st.markdown('<div style="display: flex; justify-content: center;"><h2>AI Audit Assist</h2></div>',unsafe_allow_html=True)
 
 def ai_audit(text):
     response = st.session_state['client'].chat.completions.create(

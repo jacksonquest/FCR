@@ -1,0 +1,64 @@
+{
+    "knowledge_base": [
+      {
+        "conversation": "Customer: Hi, I recently got a new broadband connection two days ago, and I'm facing an issue with the router.\nAgent: Hello! I'm sorry to hear that. Could you please describe the issue you're experiencing?\nCustomer: Yeah, so the router is not turning on properly. There's a red light on it, and I'm not able to connect to the internet.\nAgent: I see. Since when have you been noticing this issue?\nCustomer: It started today. Yesterday, it seemed to be working fine.\nAgent: Alright. Just to confirm, you're seeing only the red light on the router?\nCustomer: Yes, there's no green or blue light like I expected.\nAgent: Okay, just give me a moment.",
+        "troubleshooting_resolution": "Is the red light solid or blinking? Try turning off the router and then turn it on and wait for 30 sec.",
+        "remarks": "Transferred to Technical team as it cannot be resolved over call so they will visit your location.",
+        "transferred_to": "Technical Team"
+      },
+      {
+        "conversation": "Customer: My broadband connection keeps disconnecting every few minutes.\nAgent: I'm sorry to hear that. Since when have you been experiencing this issue?\nCustomer: It started this morning. The internet works for a few minutes and then drops again.\nAgent: Understood. Are there any changes in the router's lights when this happens?\nCustomer: Yes, the internet light turns off for a moment and then comes back on.\nAgent: I see. Are any other devices connected to the router experiencing the same issue?\nCustomer: Yes, it's happening on all my devices.",
+        "troubleshooting_resolution": "Restart the router, check for loose cables, and try placing the router in an open space.",
+        "remarks": "Issue resolved after restarting the router.",
+        "transferred_to": "N/A"
+      },
+      {
+        "conversation": "Customer: I forgot my WiFi password.\nAgent: No worries! I can help you reset it. Are you able to access your router settings?\nCustomer: I'm not sure how to do that.\nAgent: No problem. Please check the back of your router for a label with login credentials. Open a browser and enter the router's IP address.",
+        "troubleshooting_resolution": "Guide the customer to reset the password via the router settings or reset the router to factory settings.",
+        "remarks": "Customer was able to reset the password successfully.",
+        "transferred_to": "N/A"
+      },
+      {
+        "conversation": "Customer: My landline phone is not working. There's no dial tone.\nAgent: I understand. Have you checked if the phone cable is properly connected?\nCustomer: Yes, I checked, and it's properly plugged in.",
+        "troubleshooting_resolution": "Test the phone with another cable or handset, ensure no loose connections.",
+        "remarks": "Customer tried another handset, but the issue persists. Escalated to technical team.",
+        "transferred_to": "Technical Team"
+      },
+      {
+        "conversation": "Customer: My mobile network signal is very weak at home.\nAgent: I'm sorry to hear that. Have you experienced this issue before?\nCustomer: No, it started a couple of days ago.",
+        "troubleshooting_resolution": "Check if the issue is specific to one location. Suggest enabling WiFi calling.",
+        "remarks": "Issue persisted, escalated to network team.",
+        "transferred_to": "Network Team"
+      },
+      {
+        "conversation": "Customer: My internet speed is much slower than what I'm paying for.\nAgent: I understand your concern. Could you please check the speed using a speed test?\nCustomer: I just did, and it's much lower than expected.",
+        "troubleshooting_resolution": "Restart router, check connected devices, perform wired speed test.",
+        "remarks": "Speed improved after rebooting router.",
+        "transferred_to": "N/A"
+      },
+      {
+        "conversation": "Customer: I am not able to make international calls.\nAgent: Are you receiving any error message?\nCustomer: Yes, it says 'International calling is restricted'.",
+        "troubleshooting_resolution": "Check if international calling is enabled in account settings.",
+        "remarks": "Customer had to enable international calling via customer portal.",
+        "transferred_to": "N/A"
+      },
+      {
+        "conversation": "Customer: I recently changed my SIM card, and now my phone is not detecting the new SIM.\nAgent: Have you tried inserting the SIM into another phone?\nCustomer: No, not yet.",
+        "troubleshooting_resolution": "Ask customer to try SIM in another device. If still not detected, replace the SIM.",
+        "remarks": "Customer visited the nearest store for SIM replacement.",
+        "transferred_to": "Store Support"
+      },
+      {
+        "conversation": "Customer: My broadband bill seems incorrect. The amount is higher than expected.\nAgent: Let me check that for you. Did you recently upgrade your plan?\nCustomer: No, my plan is the same as before.",
+        "troubleshooting_resolution": "Check bill details for extra charges or prorated charges.",
+        "remarks": "Customer was charged for additional usage. Explained the details.",
+        "transferred_to": "Billing Team"
+      },
+      {
+        "conversation": "Customer: I want to change my broadband plan.\nAgent: Sure! What plan are you looking for?\nCustomer: I want a higher speed plan with unlimited data.",
+        "troubleshooting_resolution": "Provide available plans and guide through the upgrade process.",
+        "remarks": "Customer successfully upgraded to a new plan.",
+        "transferred_to": "N/A"
+      }
+    ]
+  }

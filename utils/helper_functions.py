@@ -3,6 +3,7 @@ import json
 import faiss
 import numpy as np
 from together import Together
+import speech_recognition as sr
 from sentence_transformers import SentenceTransformer
 
 def load_knowledge_base(file_path="data/knowledge_base.json"):
@@ -70,3 +71,150 @@ def generate_response(query, context, client, model_name):
     )
     
     return response.choices[0].message.content
+
+
+def ai_audit(text):
+    response = st.session_state['client'].chat.completions.create(
+            model=st.session_state['model_name'],
+            messages=[
+        {
+            "role": "user",
+            "content": f"""
+            Based on the following conversation:
+            {text}
+
+            Provide the response as a valid JSON without any extra or additional text or explanation.
+            Please provide the following analysis:
+
+            1.  **Summary:** Create a summary of the conversation.
+            2.  **Customer Sentiment:** Identify the overall sentiment of the customer (e.g., positive, negative, neutral) Also provide some details..
+            3.  **Agent Behavior:** Describe the agent's behavior during the conversation in detail.
+            4.  **Agent Ratings (Percentage):** Rate the agent's performance on the following metrics (0-100%):
+                * Take ownership:
+                * Relate to the customer:
+                * Understanding the issue:
+                * Set expectations:
+                * Think forward:
+            5.  **Suggestions/Recommendations:** Provide any suggestions or recommendations for improvement in the advisor's performance in bullets.
+
+            **Output Format:**
+
+            {{
+              "summary": "[Summary]",
+              "customer_sentiment": "[Sentiment]",
+              "agent_behavior": "[Description]",
+              "agent_ratings": {{
+                "take_ownership": "[Percentage]",
+                "relate_to_customer": "[Percentage]",
+                "understanding_issue": "[Percentage]",
+                "set_expectations": "[Percentage]",
+                "think_forward": "[Percentage]"
+              }},
+              "suggestions": "[Suggestions]"
+            }}
+            """,
+        }
+    ],
+        )
+    
+    bot_reply = response.choices[0].message.content
+    return bot_reply
+
+
+def ai_summary(text):
+    response = st.session_state['client'].chat.completions.create(
+            model=st.session_state['model_name'],
+            messages=[
+        {
+            "role": "user",
+            "content": f"""
+            Based on the following conversation:
+            {text}
+
+            Provide the response as a valid JSON without any extra or additional text or explanation.
+
+            1.  **Summary:** A concise summary of the conversation.
+            2.  **Query:** The primary customer query or issue.
+            3.  **Key Information:** Extract key information from the conversation and present it as key-value pairs.
+
+            **Output Format:**
+
+            {{
+              "summary": "[Summary of the conversation]",
+              "query": "[Customer's primary query or issue]",
+              "key_information": {{
+                "key1": "value1",
+                "key2": "value2",
+                // ... more key-value pairs as needed
+              }}
+            }}
+            """,
+        }
+    ],
+        )
+    
+    bot_reply = response.choices[0].message.content
+    return bot_reply
+
+def ai_conversation(text):
+    response = st.session_state['client'].chat.completions.create(
+            model=st.session_state['model_name'],
+            messages = [
+        {
+            "role": "user",
+            "content": f"""
+            Based on the following conversation:
+            {text}
+
+            Please separate the lines spoken by the customer and the agent, and present them in a clear conversation format, with each line on a new line.
+
+            **Output Format:**
+
+            Customer:
+            [Customer's line 1]
+            Agent:
+            [Agent's line 1]
+            Customer:
+            [Customer's line 2]
+            Agent:
+            [Agent's line 2]
+            ... and so on.
+            """,
+        }
+    ],
+        )
+    
+    bot_reply = response.choices[0].message.content
+    return bot_reply
+
+
+
+def transcribe_audio(file_path):
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(file_path) as source:
+        audio_data = recognizer.record(source)
+    try:
+        transcript = recognizer.recognize_google(audio_data)
+        return transcript
+    except sr.UnknownValueError:
+        return "Could not understand the audio."
+    except sr.RequestError:
+        return "Could not request results; check your internet connection."
+    
+
+def save_to_firestore(db, agent_name, timestamp, transcript, summary, customer_query,
+                      key_info, ai_solution, escalated, audited_data):
+    doc_ref = db.collection("audio_transcriptions").document(agent_name)
+    doc_ref.set({}, merge=True)  # Ensure agent exists
+    entry_data = {
+        "timestamp": timestamp,
+        "transcript": transcript,
+        "summary": summary,
+        "customer_query": customer_query,
+        "key_information": key_info,
+        "ai_recommended_solution": ai_solution,
+        "escalated_to_team": escalated,
+        "audited_data": audited_data
+    }
+    doc_ref.collection("entries").document(timestamp).set(entry_data)
+    st.success("✅ Transcript saved to Firestore successfully!")

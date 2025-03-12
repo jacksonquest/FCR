@@ -13,7 +13,7 @@ def ai_audit(text):
             Based on the following conversation:
             {text}
 
-            Provide the response as a valid JSON without any additional text or explanation.
+            Provide the response as a valid JSON without any extra or additional text or explanation.
             Please provide the following analysis:
 
             1.  **Summary:** Create a concise summary of the conversation.

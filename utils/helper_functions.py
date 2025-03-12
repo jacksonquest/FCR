@@ -43,21 +43,22 @@ def generate_response(query, context, client, model_name):
 
     Customer Query: {query}
 
+    Provide the response as a valid JSON without any extra or additional text or explanation.
     **Instructions:**
 
-    1.  **Troubleshooting Steps:** Analyze the conversation and "Troubleshooting/Resolution" and "Remarks" sections to create a list of troubleshooting actions that can be suggested to the customer, with each line on a new line.
+    1.  **Troubleshooting Steps:** Analyze the conversation and "Troubleshooting/Resolution" and "Remarks" sections to create a list of troubleshooting actions that can be suggested to the customer.
     2.  **Transfer Information:** Use the "Transferred To" section to identify the appropriate department for transfer, if necessary.
     3.  **JSON Output:** Format the response as a JSON object with the following structure:
 
         {{
-          "troubleshooting_steps": "[List of troubleshooting steps, e.g., 1. blah blah, 2. blah blah blah]",
+          "troubleshooting_steps": "[List of troubleshooting steps]",
           "transfer_to": "[Department name, e.g., Technical Team]"
         }}
 
     **Example:**
 
     {{
-      "troubleshooting_steps": "1. Restart your device. 2. Check your internet connection. 3. Reinstall the application.",
+      "troubleshooting_steps": [1. Restart your device. 2. Check your internet connection. 3. Reinstall the application.],
       "transfer_to": "Network Support"
     }}
 

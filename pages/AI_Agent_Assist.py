@@ -54,8 +54,8 @@ if uploaded_file is not None or audio_value is not None:
         cleaned_response = "{" + cleaned_response  # Add `{` back
         summary_data = json.loads(cleaned_response)
         
-        col1, col2 = st.columns(2)
-        with col1.container(height=200, border=True):
+        col1, col2 = st.columns([1,2])
+        with col1.container(height=150, border=True):
             st.markdown("<span style='color:red; font-weight:bold;'>Summary</span>", unsafe_allow_html=True)
             st.write(summary_data.get("summary", "No summary found."))
 
@@ -63,12 +63,12 @@ if uploaded_file is not None or audio_value is not None:
             st.markdown("<span style='color:red; font-weight:bold;'>Customer Query</span>", unsafe_allow_html=True)
             st.write(summary_data.get("query", "No query found."))
 
-        with col2.container(height=315, border=True):
+        with col1.container(height=300, border=True):
             st.markdown("<span style='color:red; font-weight:bold;'>Key Information</span>", unsafe_allow_html=True)
             st.write(summary_data.get("key_information", {}))
 
-        col1, col2 = st.columns([2,1])
-        with col1.container(height=150, border=True):
+        # col1, col2 = st.columns([2,1])
+        with col2.container(height=315, border=True):
             st.markdown("<span style='color:red; font-weight:bold;'>AI Recommended Solution</span>", unsafe_allow_html=True)
             knowledge_base = load_knowledge_base()
             model = initialize_model()
@@ -78,10 +78,11 @@ if uploaded_file is not None or audio_value is not None:
             cleaned_response = response.split("{", 1)[-1]  # Remove any extra text before `{`
             cleaned_response = "{" + cleaned_response  # Add `{` back
             solution = json.loads(cleaned_response)
-            st.write(solution.get("troubleshooting_steps", {}))
+            for item in solution.get("troubleshooting_steps", {}):
+                st.write(item)
 
 
-        with col2.container(height=150, border=True):
+        with col2.container(height=250, border=True):
             st.markdown("<span style='color:red; font-weight:bold;'>Escalate To:</span>", unsafe_allow_html=True)
             st.write(solution.get("transfer_to", {}))
 

@@ -2,7 +2,7 @@
     "knowledge_base": [
       {
         "conversation": "Customer: Hi, I recently got a new broadband connection two days ago, and I'm facing an issue with the router.\nAgent: Hello! I'm sorry to hear that. Could you please describe the issue you're experiencing?\nCustomer: Yeah, so the router is not turning on properly. There's a red light on it, and I'm not able to connect to the internet.\nAgent: I see. Since when have you been noticing this issue?\nCustomer: It started today. Yesterday, it seemed to be working fine.\nAgent: Alright. Just to confirm, you're seeing only the red light on the router?\nCustomer: Yes, there's no green or blue light like I expected.\nAgent: Okay, just give me a moment.",
-        "troubleshooting_resolution": "Is the red light solid or blinking? Try turning off the router and then turn it on and wait for 30 sec.",
+        "troubleshooting_resolution": "Check if all cables are connected properly. Check for service outages in customer's location. Check if the red light at the bottom of the router is solid or blinking? Try turning off the router and then turn it on and wait for 30 sec.",
         "remarks": "Transferred to Technical team as it cannot be resolved over call so they will visit your location.",
         "transferred_to": "Technical Team"
       },

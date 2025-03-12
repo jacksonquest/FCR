@@ -10,7 +10,7 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 st.markdown('<div style="display: flex; justify-content: center;"><h2>AI Agent Assist</h2></div>',unsafe_allow_html=True)
 
-# TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"]
+TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"]
 
 if 'together_api_key' not in st.session_state:
     st.session_state['together_api_key'] = TOGETHER_API_KEY

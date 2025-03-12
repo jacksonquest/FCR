@@ -6,11 +6,11 @@ import json
 
 from utils.helper_functions import *
 
-st.set_page_config(layout="centered", initial_sidebar_state="expanded")
+st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 st.markdown('<div style="display: flex; justify-content: center;"><h2>AI Agent Assist</h2></div>',unsafe_allow_html=True)
 
-TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"]
+# TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"]
 
 if 'together_api_key' not in st.session_state:
     st.session_state['together_api_key'] = TOGETHER_API_KEY
@@ -28,7 +28,7 @@ def ai_summary(text):
             Based on the following conversation:
             {text}
 
-            Provide the response as a valid JSON without any additional text or explanation.
+            Provide the response as a valid JSON without any extra or additional text or explanation.
 
             1.  **Summary:** A concise summary of the conversation.
             2.  **Query:** The primary customer query or issue.
@@ -113,10 +113,10 @@ if uploaded_file is not None:
     if st.button("Analyze", use_container_width=True, type='primary'):
         col1,col2 = st.columns([1,2])
         with col1.expander("Raw Transcript"):
-            # st.session_state['transcript'] = transcribe_audio(file_path)
-            st.session_state['transcript'] ="""
-            hi I am Abhishek I am calling about my broadband connection I got the device installed like two days ago but the signal light on the router is still red I need to know when it will be activated good morning Abhishek thank you for calling let me just get your details ok I have your details now thank you account here I understand you are having trouble with your broadband connection and the signal light Steel red deeply apologize for the inconvenience let's first try some basic troubleshooting to see if we can resolve this quickly ok what do I need to do ok so first could you please confirm that all the cables are securely plucked into the modem and the wall socket sometimes you know a loose connection can cause this issue but I will check now ok they all seem to be plugged in tightly alright next please try restarting your modem unlock the power adaptor from the modem for about 30 seconds and then plug it back in ok just give me some time I will do that still red nothing has changed ok I understand sir thank you for trying the troubleshooting steps it appears that might be a more Complex issue with the connection to resolve this I need to calculate this to a technical team they have the tools and expertise to diagnose and fix the problem ok but how long will it take I need the internet for work I understand I will create a ticket for a technical team immediately and they will privatize it they will contact you within 24 hours to schedule a visit and guide you through the further steps ok thank you is there anything I can help you with know that is all thanks a lot for the quick response appreciate your patience have a good day
-            """
+            st.session_state['transcript'] = transcribe_audio(file_path)
+            # st.session_state['transcript'] ="""
+            # hi I am Abhishek I am calling about my broadband connection I got the device installed like two days ago but the signal light on the router is still red I need to know when it will be activated good morning Abhishek thank you for calling let me just get your details ok I have your details now thank you account here I understand you are having trouble with your broadband connection and the signal light Steel red deeply apologize for the inconvenience let's first try some basic troubleshooting to see if we can resolve this quickly ok what do I need to do ok so first could you please confirm that all the cables are securely plucked into the modem and the wall socket sometimes you know a loose connection can cause this issue but I will check now ok they all seem to be plugged in tightly alright next please try restarting your modem unlock the power adaptor from the modem for about 30 seconds and then plug it back in ok just give me some time I will do that still red nothing has changed ok I understand sir thank you for trying the troubleshooting steps it appears that might be a more Complex issue with the connection to resolve this I need to calculate this to a technical team they have the tools and expertise to diagnose and fix the problem ok but how long will it take I need the internet for work I understand I will create a ticket for a technical team immediately and they will privatize it they will contact you within 24 hours to schedule a visit and guide you through the further steps ok thank you is there anything I can help you with know that is all thanks a lot for the quick response appreciate your patience have a good day
+            # """
             st.write(st.session_state['transcript'])
 
         with col2.expander("Processed Transcript"):
@@ -143,7 +143,7 @@ if uploaded_file is not None:
 
         col1, col2 = st.columns([2,1])
         with col1.container(height=150, border=True):
-            st.markdown("<span style='color:red; font-weight:bold;'>Solution</span>", unsafe_allow_html=True)
+            st.markdown("<span style='color:red; font-weight:bold;'>AI Recommended Solution</span>", unsafe_allow_html=True)
             knowledge_base = load_knowledge_base()
             model = initialize_model()
             index, _ = create_faiss_index(model, knowledge_base)
@@ -156,7 +156,7 @@ if uploaded_file is not None:
 
 
         with col2.container(height=150, border=True):
-            st.markdown("<span style='color:red; font-weight:bold;'>If the above solution does not work, forward to</span>", unsafe_allow_html=True)
+            st.markdown("<span style='color:red; font-weight:bold;'>Escalate To:</span>", unsafe_allow_html=True)
             st.write(solution.get("transfer_to", {}))
 
 

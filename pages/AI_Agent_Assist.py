@@ -56,15 +56,15 @@ if uploaded_file is not None or audio_value is not None:
         
         col1, col2 = st.columns([1,2])
         with col1.container(height=150, border=True):
-            st.markdown("<span style='color:red; font-weight:bold;'>Summary</span>", unsafe_allow_html=True)
+            st.markdown("<span style='color:black; font-weight:bold;'>Summary</span>", unsafe_allow_html=True)
             st.write(summary_data.get("summary", "No summary found."))
 
         with col1.container(height=100, border=True):
-            st.markdown("<span style='color:red; font-weight:bold;'>Customer Query</span>", unsafe_allow_html=True)
+            st.markdown("<span style='color:black; font-weight:bold;'>Customer Query</span>", unsafe_allow_html=True)
             st.write(summary_data.get("query", "No query found."))
 
         with col1.container(height=300, border=True):
-            st.markdown("<span style='color:red; font-weight:bold;'>Key Information</span>", unsafe_allow_html=True)
+            st.markdown("<span style='color:black; font-weight:bold;'>Key Information</span>", unsafe_allow_html=True)
             st.write(summary_data.get("key_information", {}))
 
         # col1, col2 = st.columns([2,1])
